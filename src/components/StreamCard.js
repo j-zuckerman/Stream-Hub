@@ -5,17 +5,25 @@ const Streamer = styled.div`
   border-radius: 1rem;
   background-color: #212121;
   padding: 0.3rem;
+
+  &:hover: {
+    transform: scale(1.03);
+  }
 `;
 
-const StreamerName = styled.p`
+const StreamerInfo = styled.span`
+  padding: 1rem;
+`;
+const StreamerName = styled.span`
   font-weight: 250;
-  color: #4c2c72;
+  color: white;
   letter-spacing: -1px;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
+  margin-left: 0.5rem;
 `;
 
 const WatchButton = styled.a`
-  background-color: #0f084b;
+  background-color: #5e227a;
   color: white;
   padding: 1rem;
   font-size: 1.25rem;
@@ -24,6 +32,11 @@ const WatchButton = styled.a`
   bottom: 10%;
   right: 5%;
   text-transform: uppercase;
+
+  &:hover {
+    transform: scale(1.05);
+    background-color: #421856;
+  }
 `;
 
 const StreamTitle = styled.h3`
@@ -40,25 +53,35 @@ const StreamerLogo = styled.img`
   width: 50px;
   height: auto;
   border-radius: 50%;
-  border: 3px solid #0f084b;
+  border: 3px solid #5e227a;
+  vertical-align: middle;
 `;
 
-const StreamHeader = styled.div`
-  display: flex;
+const ViewerCountDetails = styled.span`
+  position: absolute;
+  bottom: 10%;
+  left: 3.5%;
 `;
 
-const ViewerCount = styled.h3`
+const ViewerCount = styled.span`
   font-size: 1.2rem;
   color: white;
-  position: absolute;
-  top: 20%;
-  left: 3%;
+`;
+
+const RedDot = styled.span`
+  height: 10px;
+  width: 10px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
 `;
 
 const StreamThumbnail = styled.img`
   width: 100%;
   height: auto;
   border-radius: 1rem;
+  opacity: 0.7;
   &:before {
     content: '';
     position: absolute;
@@ -72,35 +95,34 @@ const StreamThumbnail = styled.img`
 `;
 
 const GamePlaying = styled.h2`
-  font-size: 1.3rem;
+  font-size: 1.55rem;
   color: white;
   text-align: center;
+  font-weight: 300;
 `;
 
 const StreamOverview = styled.div`
   position: relative;
 `;
 
-const RedDot = styled.span`
-  width: 10px;
-  height: 10px;
-  margin-top: 7.5px;
-  border-radius: 50%;
-  background-color: red;
-`;
 class StreamCard extends Component {
   render() {
     return (
       <Streamer>
-        <span>
+        <StreamerInfo>
           <StreamerLogo src={this.props.stream.channel.logo} />
           <StreamerName>{this.props.stream.channel.display_name}</StreamerName>
-        </span>
+        </StreamerInfo>
         <GamePlaying>{this.props.stream.channel.game}</GamePlaying>
         <StreamOverview>
           <StreamThumbnail src={this.props.stream.preview.large} />;
           <StreamTitle>{this.props.stream.channel.status}</StreamTitle>
-          <ViewerCount>{this.props.stream.viewers}</ViewerCount>
+          <ViewerCountDetails>
+            <RedDot />
+            <ViewerCount>
+              {this.props.stream.viewers + ' Watching Now'}
+            </ViewerCount>
+          </ViewerCountDetails>
           <WatchButton href={this.props.stream.channel.url} target="_blank">
             Watch Now
           </WatchButton>

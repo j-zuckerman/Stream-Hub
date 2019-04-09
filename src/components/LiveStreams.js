@@ -14,29 +14,40 @@ const Grid = styled.div`
   grid-gap: 1.25rem;
 `;
 
+const Header = styled.div`
+  margin: 3.5rem 1rem 2.5rem 1rem;
+`;
+
 const StreamerCount = styled.span`
   position: relative;
   color: white;
   font-size: 1.85rem;
   font-weight: 230;
   letter-spacing: -1px;
-  margin: 3.5rem 1rem 2.5rem 1rem;
 
   &[data-badge]:after {
     content: attr(data-badge);
     position: absolute;
-    top: -10px;
-    right: -10px;
-    font-size: 0.7em;
-    background: green;
+    top: -0.75rem;
+    right: -1.25rem;
+    font-size: 1.3rem;
+    background: #5e227a;
     color: white;
     width: 18px;
     height: 18px;
     text-align: center;
     line-height: 18px;
     border-radius: 50%;
-    box-shadow: 0 0 1px #333;
+    padding: 0.2rem;
   }
+`;
+
+const Divider = styled.hr`
+  margin: 1rem;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.12);
+  border: none;
+  flex-shrink: 0;
 `;
 
 class LiveStreams extends Component {
@@ -60,9 +71,13 @@ class LiveStreams extends Component {
     if (this.state.liveStreams != null) {
       return (
         <main>
-          <StreamerCount data-badge={this.state.liveStreams._total}>
-            Live Streams
-          </StreamerCount>
+          <Header>
+            <StreamerCount data-badge={this.state.liveStreams._total}>
+              Live Streams
+            </StreamerCount>
+          </Header>
+
+          <Divider />
 
           <Grid>
             {this.state.liveStreams.streams.map(stream => (
