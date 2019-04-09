@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/Stream-Hub/precache-manifest.ed1152a0a26da621d3a71c8575315ede.js"
+  "/Stream-Hub/precache-manifest.01cb5c5a504780cf55b4554227d38fe9.js"
 );
 
 workbox.clientsClaim();
